@@ -1,0 +1,122 @@
+<!doctype html>
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../iron-resizable-behavior/iron-resizable-behavior.html">
+<link rel="import" href="../neon-animations/neon-animation-runner-behavior.html">
+<link rel="import" href="../neon-animations/animations/transform-animation.html">
+
+
+<!--
+Progress bar that animates the change of its value, e.g. the bar slowly grows when the value
+increases.
+
+@demo demo/index.html
+-->
+<dom-module id="neon-progress">
+
+	<template>
+
+		<style>
+			:host {
+				display: block;
+				overflow: hidden;
+				background: var(--collaborne-colors-background, #eee);
+				height: 8px;
+			}
+			.progress-bar {
+				background: var(--collaborne-colors-color, red);
+				height: 100%;
+				width: 100%;
+				position: relative;
+				/* Ensure the progress bar isn't visible on start */
+				transform: translate(-10000px, 0);
+			}
+		</style>
+
+		<div id="progressBar" class="progress-bar"></div>
+	</template>
+</dom-module>
+
+<script>
+
+(function() {
+
+	Polymer({
+		is: 'neon-progress',
+		properties: {
+			value: {
+				type: Number,
+				value: 0,
+				observer: '_onValueChanged',
+			},
+
+			_fromPosition: Number,
+			_toPosition: Number,
+		},
+
+		behaviors: [
+			Polymer.NeonAnimationRunnerBehavior,
+			Polymer.IronResizableBehavior,
+		],
+
+		listeners: {
+			'neon-animation-finish': '_onNeonAnimationFinish',
+			'iron-resize': '_refresh',
+		},
+
+		_refresh: function() {
+			this._onValueChanged(this.value, this.value);
+		},
+
+		_onValueChanged: function(newValue, oldValue) {
+			// Don't animate initialization call
+			let fromValue = Number(oldValue || newValue);
+			let toValue = Number(newValue);
+			if (isNaN(fromValue)) {
+				fromValue = 0;
+			}
+			if (isNaN(toValue)) {
+				toValue = 0;
+			}
+
+			const progressBarWidth = this.$.progressBar.clientWidth;
+			this._fromPosition = (fromValue - 1) * progressBarWidth;
+			this._toPosition = (toValue - 1) * progressBarWidth;
+
+			this._setPosition(this._fromPosition);
+
+			this.cancelAnimation();
+			this.playAnimation();
+		},
+
+		getAnimationConfig: function() {
+			return [
+				{
+					name: 'transform-animation',
+					node: this.$.progressBar,
+					transformFrom: `translate(${this._fromPosition}px, 0)`,
+					transformTo: `translate(${this._toPosition}px, 0)`,
+					timing: {
+						duration: 1000
+					},
+				},
+			];
+		},
+
+		_onNeonAnimationFinish: function() {
+			// Neon animations require to fix the end position after the animation is finished
+			this._setPosition(this._toPosition);
+		},
+
+		/**
+		 * Sets the progress bar to a fixed position
+		 */
+		_setPosition: function(pos) {
+			return this.$.progressBar.style.transform = `translate(${this._toPosition}px, 0)`;
+		},
+
+	});
+
+})();
+
+</script>

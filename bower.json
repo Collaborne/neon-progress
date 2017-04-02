@@ -1,0 +1,33 @@
+{
+  "name": "neon-progress",
+  "authors": [
+    "collaborne"
+  ],
+  "description": "Polymer element that shows an animated progress bar",
+  "main": "neon-progress.html",
+  "keywords": [
+    "web-components",
+    "polymer",
+    "paper",
+    "material design",
+    "progress",
+    "mobile"
+  ],
+  "license": "Apache 2",
+  "homepage": "https://github.com/collaborne/neon-progress",
+  "ignore": [
+    "**/.*"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.0.0",
+    "iron-resizable-behavior": "PolymerElements/iron-resizable-behavior#^1.0.0",
+    "neon-animations": "PolymerElements/neon-animation#^1.0.0"
+  },
+  "devDependencies": {
+    "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
+    "iron-pages": "PolymerElements/iron-pages#^1.0.0",
+    "test-fixture": "PolymerElements/test-fixture#^1.0.0",
+    "web-component-tester": "*",
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0"
+  }
+}
