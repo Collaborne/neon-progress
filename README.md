@@ -4,7 +4,9 @@ _[Demo and API Docs](http://collaborne.github.io/neon-progress)_
 neon-progress [![Travis state](https://travis-ci.org/Collaborne/neon-progress.svg?branch=master)](https://travis-ci.org/Collaborne/neon-progress)
 =========
 
-A Material Design [stepper](https://www.google.com/design/spec/components/steppers.html). This element is built for [Polymer 1.x](https://www.polymer-project.org).
+An animated progress bar. This element is built for [Polymer 1.x](https://www.polymer-project.org).
+
+![Element in action](https://raw.githubusercontent.com/Collaborne/neon-progress/master/doc/screencast.gif)
 
 To use the element:
 
