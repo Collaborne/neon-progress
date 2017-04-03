@@ -1,7 +1,7 @@
 _[Demo and API Docs](http://collaborne.github.io/neon-progress/)_
 
 
-# neon-progress
+# neon-progress [![Travis state](https://travis-ci.org/Collaborne/neon-progress.svg?branch=master)](https://travis-ci.org/Collaborne/neon-progress)
 
 An animated progress bar. This element is built for [Polymer 1.x](https://www.polymer-project.org).
 
