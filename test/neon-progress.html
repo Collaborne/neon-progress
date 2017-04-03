@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+	<head>
+		<title>neon-progress</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+		<script src="../../web-component-tester/browser.js"></script>
+		<script src="../../test-fixture/test-fixture-mocha.js"></script>
+
+		<link rel="import" href="../neon-progress.html">
+		<link rel="import" href="../../test-fixture/test-fixture.html">
+	</head>
+	<body>
+
+		<test-fixture id="TrivialElement">
+			<template>
+				<neon-progress></neon-progress>
+			</template>
+		</test-fixture>
+
+		<script>
+			suite('<neon-progress>', function() {
+				suite('progress bar width', function() {
+					var element;
+
+					setup(function() {
+						element = fixture('TrivialElement');
+					});
+
+					test('prepares animation for value increase', function() {
+						element._onValueChanged(0.3, 0.7, 100);
+						expect(Math.round(element._fromPosition)).to.be.eql(-30);
+						expect(Math.round(element._toPosition)).to.be.eql(-70);
+					});
+
+					test('prepares animation for value decrease', function() {
+						element._onValueChanged(0.7, 0.3, 100);
+						expect(Math.round(element._fromPosition)).to.be.eql(-70);
+						expect(Math.round(element._toPosition)).to.be.eql(-30);
+					});
+
+					test('doesn\'t animation initialization of the value', function() {
+						element._onValueChanged(0.5, undefined, 100);
+						expect(Math.round(element._fromPosition)).to.be.eql(-50);
+						expect(Math.round(element._toPosition)).to.be.eql(-50);
+					});
+
+					test('considers invalid numbers as zeros', function() {
+						element._onValueChanged('non-a-number', 'non-a-number', 100);
+						expect(Math.round(element._fromPosition)).to.be.eql(-100);
+						expect(Math.round(element._toPosition)).to.be.eql(-100);
+					});
+				});
+			});
+		</script>
+
+	</body>
+</html>

@@ -68,7 +68,11 @@ increases.
 			this._onValueChanged(this.value, this.value);
 		},
 
-		_onValueChanged: function(newValue, oldValue) {
+		/**
+		 * Sets up the animation to move the length of the progress bar to the new value.
+		 * The progress bar width is given as a parameter to simplify unit testing.
+		 */
+		_onValueChanged: function(newValue, oldValue, progressBarWidth = this.$.progressBar.clientWidth) {
 			// Don't animate initialization call
 			let fromValue = Number(oldValue || newValue);
 			let toValue = Number(newValue);
@@ -79,7 +83,6 @@ increases.
 				toValue = 0;
 			}
 
-			const progressBarWidth = this.$.progressBar.clientWidth;
 			this._fromPosition = (fromValue - 1) * progressBarWidth;
 			this._toPosition = (toValue - 1) * progressBarWidth;
 
