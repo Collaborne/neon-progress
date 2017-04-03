@@ -11,18 +11,15 @@
 			<template is="dom-bind">
 				<style>
 					.input {
-						width: 100%;
 						margin-top: 8px;
 					}
 				</style>
 
 				<neon-progress value="[[value]]"></neon-progress>
 
-				<input
-					value="{{value::input}}"
-					placeholder="Enter a value between 0 and 1"
-					class="input">
-				</input>
+				<div class="input">
+					Progress (between 0 and 1): <input value="{{value::input}}"></input>
+				</div>
 
 				 <script>
 					var scope = document.querySelector("template[is=dom-bind]");
