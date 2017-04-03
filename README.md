@@ -12,6 +12,20 @@ To use the element:
 
 `bower install neon-progress`
 
+<!---
+```
+<custom-element-demo>
+  <template>
+    <script src="../webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="neon-progress.html">
+    <next-code-block></next-code-block>
+  </template>
+</custom-element-demo>
+```
+-->
+```html
+<neon-progress progess="0.5"></neon-progress>
+```
 
 ## License
 
