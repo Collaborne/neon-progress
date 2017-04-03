@@ -1,4 +1,4 @@
-_[Demo and API Docs](http://collaborne.github.io/neon-progress)_
+_[Demo and API Docs](http://collaborne.github.io/neon-progress/)_
 
 
 neon-progress
