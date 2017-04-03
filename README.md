@@ -1,12 +1,13 @@
 _[Demo and API Docs](http://collaborne.github.io/neon-progress/)_
 
 
-neon-progress
-=========
+# neon-progress
 
 An animated progress bar. This element is built for [Polymer 1.x](https://www.polymer-project.org).
 
 ![Element in action](https://raw.githubusercontent.com/Collaborne/neon-progress/master/doc/screencast.gif)
+
+## Usage
 
 To use the element:
 
@@ -26,6 +27,13 @@ To use the element:
 ```html
 <neon-progress progess="0.5"></neon-progress>
 ```
+
+## Styling
+
+Variable                     | Description
+---------------------------- | -------------------------
+`--neon-progress-color`      | Color of the progress bar
+`--neon-progress-background` | Background color of the progress element
 
 ## License
 
