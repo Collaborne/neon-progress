@@ -30,27 +30,27 @@
 					});
 
 					test('prepares animation for value increase', function() {
-						element._onValueChanged(0.3, 0.7, 100);
-						expect(Math.round(element._fromPosition)).to.be.eql(-30);
-						expect(Math.round(element._toPosition)).to.be.eql(-70);
+						element._onValueChanged(0.3, 0.7);
+						expect(Math.round(element._fromPos)).to.be.eql(-30);
+						expect(Math.round(element._toPos)).to.be.eql(-70);
 					});
 
 					test('prepares animation for value decrease', function() {
-						element._onValueChanged(0.7, 0.3, 100);
-						expect(Math.round(element._fromPosition)).to.be.eql(-70);
-						expect(Math.round(element._toPosition)).to.be.eql(-30);
+						element._onValueChanged(0.7, 0.3);
+						expect(Math.round(element._fromPos)).to.be.eql(-70);
+						expect(Math.round(element._toPos)).to.be.eql(-30);
 					});
 
 					test('doesn\'t animation initialization of the value', function() {
-						element._onValueChanged(0.5, undefined, 100);
-						expect(Math.round(element._fromPosition)).to.be.eql(-50);
-						expect(Math.round(element._toPosition)).to.be.eql(-50);
+						element._onValueChanged(0.5, undefined);
+						expect(Math.round(element._fromPos)).to.be.eql(-50);
+						expect(Math.round(element._toPos)).to.be.eql(-50);
 					});
 
 					test('considers invalid numbers as zeros', function() {
-						element._onValueChanged('non-a-number', 'non-a-number', 100);
-						expect(Math.round(element._fromPosition)).to.be.eql(-100);
-						expect(Math.round(element._toPosition)).to.be.eql(-100);
+						element._onValueChanged('non-a-number', 'non-a-number');
+						expect(Math.round(element._fromPos)).to.be.eql(-100);
+						expect(Math.round(element._toPos)).to.be.eql(-100);
 					});
 				});
 			});
