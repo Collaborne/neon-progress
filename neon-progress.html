@@ -1,7 +1,6 @@
 <!doctype html>
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
-<link rel="import" href="../iron-resizable-behavior/iron-resizable-behavior.html">
 <link rel="import" href="../neon-animation/neon-animation-runner-behavior.html">
 <link rel="import" href="../neon-animation/animations/transform-animation.html">
 
@@ -50,43 +49,36 @@ increases.
 				observer: '_onValueChanged',
 			},
 
-			_fromPosition: Number,
-			_toPosition: Number,
+			_fromPos: Number,
+			_toPos: {
+				type: Number,
+				observer: '_animate',
+			},
 		},
 
 		behaviors: [
 			Polymer.NeonAnimationRunnerBehavior,
-			Polymer.IronResizableBehavior,
 		],
 
 		listeners: {
 			'neon-animation-finish': '_onNeonAnimationFinish',
-			'iron-resize': '_refresh',
-		},
-
-		_refresh: function() {
-			this._onValueChanged(this.value, this.value);
 		},
 
 		/**
 		 * Sets up the animation to move the length of the progress bar to the new value.
 		 * The progress bar width is given as a parameter to simplify unit testing.
 		 */
-		_onValueChanged: function(newValue, oldValue, progressBarWidth = this.$.progressBar.clientWidth) {
+		_onValueChanged: function(newValue, oldValue) {
 			// Don't animate initialization call
-			let fromValue = Number(oldValue || newValue);
-			let toValue = Number(newValue);
-			if (isNaN(fromValue)) {
-				fromValue = 0;
-			}
-			if (isNaN(toValue)) {
-				toValue = 0;
-			}
+			const fromValue = Number(oldValue || newValue);
+			const toValue = Number(newValue);
+			// Calculate the position where the bar should be
+			this._fromPos = !isNaN(fromValue) ? 100 * (fromValue - 1) : -100;
+			this._toPos = !isNaN(toValue) ? 100 * (toValue - 1) : -100;
+		},
 
-			this._fromPosition = (fromValue - 1) * progressBarWidth;
-			this._toPosition = (toValue - 1) * progressBarWidth;
-
-			this._setPosition(this._fromPosition);
+		_animate: function() {
+			this._setPosition(this._fromPos);
 
 			this.cancelAnimation();
 			this.playAnimation();
@@ -97,8 +89,8 @@ increases.
 				{
 					name: 'transform-animation',
 					node: this.$.progressBar,
-					transformFrom: `translate(${this._fromPosition}px, 0)`,
-					transformTo: `translate(${this._toPosition}px, 0)`,
+					transformFrom: `translate(${this._fromPos}%, 0)`,
+					transformTo: `translate(${this._toPos}%, 0)`,
 					timing: {
 						duration: 1000
 					},
@@ -108,14 +100,14 @@ increases.
 
 		_onNeonAnimationFinish: function() {
 			// Neon animations require to fix the end position after the animation is finished
-			this._setPosition(this._toPosition);
+			this._setPosition(this._toPos);
 		},
 
 		/**
 		 * Sets the progress bar to a fixed position
 		 */
 		_setPosition: function(pos) {
-			return this.$.progressBar.style.transform = `translate(${this._toPosition}px, 0)`;
+			return this.$.progressBar.style.transform = `translate(${pos}%, 0)`;
 		},
 
 	});
