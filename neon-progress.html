@@ -69,8 +69,10 @@ increases.
 		 */
 		_onValueChanged: function(newValue, oldValue) {
 			// Don't animate initialization call
-			const fromValue = Number(oldValue || newValue);
+			const hasOldValue = oldValue !== undefined && oldValue !== null;
+			const fromValue = hasOldValue ? Number(oldValue) : Number(newValue);
 			const toValue = Number(newValue);
+
 			// Calculate the position where the bar should be
 			this._fromPos = !isNaN(fromValue) ? 100 * (fromValue - 1) : -100;
 			this._toPos = !isNaN(toValue) ? 100 * (toValue - 1) : -100;
