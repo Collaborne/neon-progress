@@ -8,24 +8,26 @@
 
 	<body>
 		<div class="vertical-section">
-			<template is="dom-bind">
-				<style>
-					.input {
-						margin-top: 8px;
-					}
-				</style>
+			<dom-bind>
+				<template>
+					<style>
+						.input {
+							margin-top: 8px;
+						}
+					</style>
 
-				<neon-progress value="[[value]]"></neon-progress>
+					<neon-progress value="[[value]]"></neon-progress>
 
-				<div class="input">
-					Progress (between 0 and 1): <input value="{{value::input}}"></input>
-				</div>
+					<div class="input">
+						Progress (between 0 and 1): <input value="{{value::input}}"></input>
+					</div>
 
-				 <script>
-					var scope = document.querySelector("template[is=dom-bind]");
-					scope.value = .5;
-				</script>
-			</template>
+					<script>
+						const scope = document.querySelector("dom-bind");
+						scope.value = .5;
+					</script>
+				</template>
+			</dom-bind>
 		</div>
 	</body>
 </html>
