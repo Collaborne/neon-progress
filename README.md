@@ -22,7 +22,7 @@ To use the element:
 ```
 -->
 ```html
-<neon-progress progess="0.5"></neon-progress>
+<neon-progress value="0.7"></neon-progress>
 ```
 
 ## Styling
