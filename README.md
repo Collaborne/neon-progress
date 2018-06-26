@@ -1,5 +1,8 @@
 # neon-progress [![Travis state](https://travis-ci.org/Collaborne/neon-progress.svg?branch=master)](https://travis-ci.org/Collaborne/neon-progress) [![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/Collaborne/neon-progress)
 
+[![Published on Vaadin  Directory](https://img.shields.io/badge/Vaadin%20Directory-published-00b4f0.svg)](https://vaadin.com/directory/component/Collaborneneon-progress)
+[![Stars on vaadin.com/directory](https://img.shields.io/vaadin-directory/star/Collaborneneon-progress.svg)](https://vaadin.com/directory/component/Collaborneneon-progress)
+
 An animated progress bar. This element is built for [Polymer](https://www.polymer-project.org).
 
 ![Element in action](https://raw.githubusercontent.com/Collaborne/neon-progress/master/doc/screencast.gif)
